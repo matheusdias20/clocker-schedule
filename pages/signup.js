@@ -15,7 +15,7 @@ import {
   InputLeftAddon} from '@chakra-ui/react';
 
 import { Logo } from './../components';
-import { firebaseClient } from './../config/firebase';
+import { firebaseClient } from './../config/firebase/client';
 
 
 

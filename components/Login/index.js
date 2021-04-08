@@ -14,7 +14,7 @@ import {
   FormHelperText} from '@chakra-ui/react';
 
 import { Logo } from '../Logo';
-import { firebaseClient, persistenceMode } from './../../config/firebase';
+import { firebaseClient, persistenceMode } from './../../config/firebase/client';
 
 
 
