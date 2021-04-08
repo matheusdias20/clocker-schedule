@@ -12,7 +12,11 @@ const firebaseConfig = {
 };
 
   // Initialize Firebase
-  export default firebase.apps.length 
+const app =  firebase.apps.length 
     ? firebase.app() 
     : firebase.initializeApp(firebaseConfig);
-  // firebase.analytics();
+    // firebase.analytics();
+
+export const persistenceMode = firebase.auth.Auth.Persistence.SESSION
+
+export default app 
