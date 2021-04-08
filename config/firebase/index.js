@@ -17,6 +17,6 @@ const app =  firebase.apps.length
     : firebase.initializeApp(firebaseConfig);
     // firebase.analytics();
 
-export const persistenceMode = firebase.auth.Auth.Persistence.SESSION
+export const persistenceMode = firebase.auth.Auth.Persistence.LOCAL
 
 export default app 
