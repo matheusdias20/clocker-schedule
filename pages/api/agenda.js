@@ -14,11 +14,13 @@ export default async (req, res) => {
         const { user_id } = await firebaseServer.auth().verifyIdToken(token)
 
         const snapshot = await agenda
-        .where('userId', '==' , user_id)
-        .where('when', '==', re.query.when)
-        .get()
+            .where('userId', '==', user_id)
+            .where('date', '==', req.query.date)
+            .get()
+        
+        const docs = snapshot.docs.map(doc => doc.data())
 
-        return res.status(200).json(snapshot.docs)
+        return res.status(200).json(docs)
 
     }catch(error) {
         console.error('FB ERROR', error)
