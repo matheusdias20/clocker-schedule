@@ -88,6 +88,7 @@ export const TimeBlock = ({ time, date, disabled }) => {
                         placeholder="(99) 9 9999 9999" 
                         size="lg" 
                         name="phone" 
+                        mask={['(99) 9999-9999', '(99) 9 9999-9999']}
                         value={values.phone} 
                         onChange={handleChange} 
                         onBlur={handleBlur}

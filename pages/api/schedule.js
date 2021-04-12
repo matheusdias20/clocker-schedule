@@ -33,12 +33,14 @@ const getUserId = async (username) => {
 
 const setSchedule = async (req, res) => {
     const userId = await getUserId(req.body.username)
-    const docId = `${userId}#${req.body.when}#${req.body.time}`
-    
+    const docId = `${userId}#${req.body.date}#${req.body.time}`
+
     const doc = await agenda.doc(docId).get()
 
     if (doc.exists) {
-        return res.status(400)
+        console.log('doc')
+        res.status(400).json({ message: 'Time blocked!' })
+        return
     }
 
     const block = await agenda.doc(docId).set({
@@ -55,6 +57,10 @@ const setSchedule = async (req, res) => {
 const getSchedule = async (req, res) => {
     try {
         const userId = await getUserId(req.query.username)
+
+        if (!userId) {
+            return res.status(404).json({ message: 'Invalid username' })
+        }
 
         const snapshot = await agenda
             .where('userId', '==', userId)
