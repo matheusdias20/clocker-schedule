@@ -1,5 +1,8 @@
 import { firebaseServer } from './../../config/firebase/server'
 
+const db = firebaseServer.firestore()
+const agenda = db.collection('agenda')
+
 export default async (req, res) => {
     const [, token] = req.headers.authorization.split(' ')
 
@@ -9,7 +12,14 @@ export default async (req, res) => {
 
     try {
         const { user_id } = await firebaseServer.auth().verifyIdToken(token)
-        console.log(user_id)
+
+        const snapshot = await agenda
+        .where('userId', '==' , user_id)
+        .where('when', '==', re.query.when)
+        .get()
+
+        return res.status(200).json(snapshot.docs)
+
     }catch(error) {
         console.error('FB ERROR', error)
         return res.status(401)
